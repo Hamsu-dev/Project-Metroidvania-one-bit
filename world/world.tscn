@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnjy5oleo8qv7"]
+[gd_scene load_steps=9 format=3 uid="uid://bnjy5oleo8qv7"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_2woc3"]
 [ext_resource type="PackedScene" uid="uid://d2eqgiarngc4l" path="res://player/player.tscn" id="1_ac7h7"]
@@ -7,6 +7,7 @@
 [ext_resource type="Curve2D" uid="uid://bn3wpvax5xsu" path="res://world/Platform_Path/up_down_path.tres" id="5_j8dgb"]
 [ext_resource type="Curve2D" uid="uid://dukv7uj84ata3" path="res://world/Platform_Path/left_right_path.tres" id="6_00i64"]
 [ext_resource type="Curve2D" uid="uid://cw5lq0em3a8ux" path="res://world/Platform_Path/hex_path.tres" id="7_xqnl7"]
+[ext_resource type="PackedScene" uid="uid://umwl8ods1pxf" path="res://enemies/walking_enemy.tscn" id="8_fc4sv"]
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_2woc3")
@@ -52,6 +53,18 @@ curve = ExtResource("7_xqnl7")
 
 [node name="PathFollow2D" parent="MovingPlatform3/Path2D" index="0"]
 position = Vector2(-0.107422, 0.107422)
+
+[node name="WalkingEnemy" parent="." instance=ExtResource("8_fc4sv")]
+position = Vector2(-36, 16)
+
+[node name="WalkingEnemy2" parent="." instance=ExtResource("8_fc4sv")]
+position = Vector2(2, 104)
+
+[node name="WalkingEnemy3" parent="." instance=ExtResource("8_fc4sv")]
+position = Vector2(178, 105)
+
+[node name="WalkingEnemy4" parent="." instance=ExtResource("8_fc4sv")]
+position = Vector2(314, 14)
 
 [editable path="MovingPlatform"]
 [editable path="MovingPlatform2"]
