@@ -7,23 +7,31 @@ const DustEffectScene = preload("res://effects/dust_effect.tscn")
 @export var friction = 256
 @export var gravity = 200
 @export var jump_force = 128
-@export var max_fall_speed = 120
+@export var max_fall_speed = 600
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite_2d = $Sprite2D
 @onready var coyote_jump_timer = $CoyoteJumpTimer
+@onready var player_blaster = $PlayerBlaster
+@onready var fire_rate_timer = $FireRateTimer
+@onready var drop_timer = $DropTimer
 
-
+ 
 func _physics_process(delta):
-	var input_axis = Input.get_axis("ui_left", "ui_right")
+	var input_axis = Input.get_axis("left", "right")
 	apply_gravity(delta)
 	# Moving
 	if is_moving(input_axis):
 		apply_acceleration(delta, input_axis)
 	else:
 		apply_friction(delta)
-
 	jump_check()
+	if Input.is_action_pressed("fire") and fire_rate_timer.time_left == 0:
+		fire_rate_timer.start()
+		player_blaster.fire_bullet()
+	if Input.is_action_just_pressed("crouch"):
+		set_collision_mask_value(2, false)
+		drop_timer.start()
 	update_animations(input_axis)
 	
 	var was_on_floor = is_on_floor()
@@ -34,10 +42,7 @@ func _physics_process(delta):
 
 
 func create_dust_effect():
-	var dust_effect = DustEffectScene.instantiate()
-	var world = get_tree().current_scene
-	world.add_child(dust_effect)
-	dust_effect.global_position = global_position
+	Utils.instantiate_scene_on_world(DustEffectScene, global_position)
 
 
 func is_moving(input_axis):
@@ -59,18 +64,25 @@ func apply_friction(delta):
 
 func jump_check():
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
-		if Input.is_action_just_pressed("ui_up"):
+		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jump_force
 	if not is_on_floor():
-		if Input.is_action_just_released("ui_up") and velocity.y < -jump_force / 2:
+		if Input.is_action_just_released("jump") and velocity.y < -jump_force / 2:
 			velocity.y = -jump_force / 2
 
+
 func update_animations(input_axis):
+	sprite_2d.scale.x = sign(get_local_mouse_position().x) #Rotate player following mouse
+	if abs(sprite_2d.scale.x) != 1: sprite_2d.scale.x = 1
 	if is_moving(input_axis):
 		animation_player.play("run")
-		sprite_2d.scale.x = sign(input_axis)
+		animation_player.speed_scale = input_axis * sprite_2d.scale.x #Animate walking backwards
 	else:
 		animation_player.play("idle")
 	
 	if not is_on_floor():
 		animation_player.play("jump")
+
+
+func _on_drop_timer_timeout():
+	set_collision_mask_value(2, true)
