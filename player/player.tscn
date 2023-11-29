@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2eqgiarngc4l"]
+[gd_scene load_steps=13 format=3 uid="uid://d2eqgiarngc4l"]
 
 [ext_resource type="Script" path="res://player/player.gd" id="1_lcs33"]
 [ext_resource type="Texture2D" uid="uid://df86uxl8jutbu" path="res://player/player.png" id="1_p7660"]
 [ext_resource type="PackedScene" uid="uid://c12q76q7a4aiq" path="res://player/player_blaster.tscn" id="3_6tqhu"]
+[ext_resource type="Script" path="res://Collisions/hurtbox.gd" id="4_cryoq"]
+[ext_resource type="PackedScene" uid="uid://woki417qn0nh" path="res://world/camera_2d.tscn" id="4_j2x14"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d4eeh"]
 size = Vector2(8, 14)
@@ -97,6 +99,9 @@ _data = {
 "run": SubResource("Animation_hgb2b")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wkg0p"]
+size = Vector2(6.5, 14)
+
 [node name="Player" type="CharacterBody2D"]
 z_index = 10
 collision_layer = 4
@@ -128,8 +133,7 @@ libraries = {
 "": SubResource("AnimationLibrary_ewys4")
 }
 
-[node name="Camera2D" type="Camera2D" parent="."]
-position = Vector2(0, -8)
+[node name="Camera2D" parent="." instance=ExtResource("4_j2x14")]
 
 [node name="CoyoteJumpTimer" type="Timer" parent="."]
 wait_time = 0.15
@@ -143,4 +147,14 @@ one_shot = true
 wait_time = 0.2
 one_shot = true
 
+[node name="Hurtbox" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
+script = ExtResource("4_cryoq")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(-0.75, -7)
+shape = SubResource("RectangleShape2D_wkg0p")
+
 [connection signal="timeout" from="DropTimer" to="." method="_on_drop_timer_timeout"]
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]

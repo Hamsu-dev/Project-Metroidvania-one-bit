@@ -1,6 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://crl2gwvjmug6o"]
+[gd_scene load_steps=8 format=3 uid="uid://crl2gwvjmug6o"]
 
-[ext_resource type="PackedScene" uid="uid://dbl3kn7i5rfs5" path="res://Singletons/projectile.tscn" id="1_j6f42"]
+[ext_resource type="PackedScene" uid="uid://dbl3kn7i5rfs5" path="res://BaseScenesToInherit/projectile.tscn" id="1_86l55"]
 [ext_resource type="Texture2D" uid="uid://nyouqw66s0ne" path="res://player/player_bullet.png" id="1_ju6ed"]
 [ext_resource type="Script" path="res://player/bullet.gd" id="2_kqmwf"]
 
@@ -56,7 +56,10 @@ _data = {
 "fire": SubResource("Animation_y0jfi")
 }
 
-[node name="Bullet" instance=ExtResource("1_j6f42")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uf3ey"]
+size = Vector2(7, 4)
+
+[node name="Bullet" instance=ExtResource("1_86l55")]
 script = ExtResource("2_kqmwf")
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="0"]
@@ -71,3 +74,10 @@ autoplay = "fire"
 libraries = {
 "": SubResource("AnimationLibrary_da1ti")
 }
+
+[node name="Hitbox" parent="." index="3"]
+collision_mask = 35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(0.5, 0)
+shape = SubResource("RectangleShape2D_uf3ey")

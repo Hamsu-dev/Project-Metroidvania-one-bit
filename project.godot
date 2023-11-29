@@ -17,7 +17,9 @@ config/icon="res://player/player_ship.png"
 
 [autoload]
 
-Utils="*res://Singletons/Utils.gd"
+Utils="*res://Singleton/Utils.gd"
+Events="*res://Singleton/events.gd"
+PlayerStats="*res://player/player_stats.tscn"
 
 [display]
 
@@ -70,7 +72,9 @@ crouch={
 2d_physics/layer_1="World"
 2d_physics/layer_2="OneWayPlatforms"
 2d_physics/layer_3="Player"
-2d_physics/layer_4="enemy"
+2d_physics/layer_4="Enemy"
+2d_physics/layer_5="PlayerHurtBox"
+2d_physics/layer_6="EnemyHurtBox"
 
 [rendering]
 

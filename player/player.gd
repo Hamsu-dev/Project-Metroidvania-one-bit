@@ -1,6 +1,7 @@
 extends CharacterBody2D
 
 const DustEffectScene = preload("res://effects/dust_effect.tscn")
+const JumpEffectScene = preload("res://effects/jump_effect.tscn" )
 
 @export var acceleration = 512
 @export var max_velocity = 64
@@ -15,8 +16,14 @@ const DustEffectScene = preload("res://effects/dust_effect.tscn")
 @onready var player_blaster = $PlayerBlaster
 @onready var fire_rate_timer = $FireRateTimer
 @onready var drop_timer = $DropTimer
+@onready var camera_2d = $Camera2D
+@onready var hurtbox = $Hurtbox
 
  
+func _ready():
+	PlayerStats.no_health.connect(die)
+
+
 func _physics_process(delta):
 	var input_axis = Input.get_axis("left", "right")
 	apply_gravity(delta)
@@ -66,6 +73,7 @@ func jump_check():
 	if is_on_floor() or coyote_jump_timer.time_left > 0.0:
 		if Input.is_action_just_pressed("jump"):
 			velocity.y = -jump_force
+			Utils.instantiate_scene_on_world(JumpEffectScene, global_position)
 	if not is_on_floor():
 		if Input.is_action_just_released("jump") and velocity.y < -jump_force / 2:
 			velocity.y = -jump_force / 2
@@ -84,5 +92,18 @@ func update_animations(input_axis):
 		animation_player.play("jump")
 
 
+func die():
+	camera_2d.reparent(get_tree().current_scene) 
+	queue_free()
+
+
 func _on_drop_timer_timeout():
 	set_collision_mask_value(2, true)
+
+
+func _on_hurtbox_hurt(hitbox, damage):
+	Events.add_screenshake.emit(3, 0.2)
+	PlayerStats.health -= 1
+	hurtbox.is_invincible = true
+	await get_tree().create_timer(1.0).timeout
+	hurtbox.is_invincible = false

@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://da4kflkjmnvb3"]
+
+[ext_resource type="Script" path="res://BaseScenesToInherit/stats.gd" id="1_tfw8q"]
+
+[node name="Stats" type="Node"]
+script = ExtResource("1_tfw8q")
