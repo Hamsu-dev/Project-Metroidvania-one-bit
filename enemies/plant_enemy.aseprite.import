@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://cr5ccdb03goxw"
+path="res://.godot/imported/plant_enemy.aseprite-a1d4bcb8efc8922eea85376ae6087f0f.res"
+
+[deps]
+
+source_file="res://enemies/plant_enemy.aseprite"
+dest_files=["res://.godot/imported/plant_enemy.aseprite-a1d4bcb8efc8922eea85376ae6087f0f.res"]
+
+[params]
+

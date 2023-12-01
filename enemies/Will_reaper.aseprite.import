@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://kc5com2rgkie"
+path="res://.godot/imported/Will_reaper.aseprite-2d7e6a176bb5b720b2e683bfedbf2bab.res"
+
+[deps]
+
+source_file="res://enemies/Will_reaper.aseprite"
+dest_files=["res://.godot/imported/Will_reaper.aseprite-2d7e6a176bb5b720b2e683bfedbf2bab.res"]
+
+[params]
+
