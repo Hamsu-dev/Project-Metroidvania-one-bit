@@ -4,12 +4,12 @@
 [ext_resource type="Script" path="res://player/player_blaster.gd" id="1_juq55"]
 
 [node name="PlayerBlaster" type="Node2D"]
+position = Vector2(2.08165e-12, 2.08165e-12)
 script = ExtResource("1_juq55")
 
 [node name="BlasterSprite" type="Sprite2D" parent="."]
-scale = Vector2(1.03762, 0.886072)
 texture = ExtResource("1_cex1a")
 offset = Vector2(4, 2.08165e-12)
 
 [node name="Muzzle" type="Marker2D" parent="BlasterSprite"]
-position = Vector2(10.6012, 0)
+position = Vector2(10, -2.08165e-12)
