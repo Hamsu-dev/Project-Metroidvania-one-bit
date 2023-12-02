@@ -7,12 +7,12 @@ const WallJumpEffectScene = preload("res://effects/wall_jump_effect.tscn")
 @export var acceleration = 512
 @export var max_velocity = 64
 @export var friction = 256
-@export var air_friction = 64
+@export var air_friction = 100 #64
 @export var gravity = 200
 @export var jump_force = 128
 @export var max_fall_speed = 128
 @export var wall_slide_speed = 42
-@export var max_wall_slide_speed = 128
+@export var max_wall_slide_speed = 200
 
 var air_jump = false
 var state = move_state
@@ -34,7 +34,6 @@ func _ready():
 
 func _physics_process(delta):
 	state.call(delta)
-	print(state)
 	if Input.is_action_pressed("fire") and fire_rate_timer.time_left == 0:
 		fire_rate_timer.start()
 		player_blaster.fire_bullet()
@@ -92,9 +91,9 @@ func wall_detatch(delta, wall_axis):
 
 func wall_jump_check(wall_axis):
 	if Input.is_action_just_pressed("jump"):
-		velocity.x = wall_axis * max_velocity
+		velocity.x = wall_axis * max_velocity * 1.3
 		state = move_state
-		jump(jump_force * 0.75, false)
+		jump(jump_force, false)
 		var wall_jump_effect_position = global_position + Vector2(wall_axis * 3.5, -2)
 		var wall_jump_effect = Utils.instantiate_scene_on_world(WallJumpEffectScene, wall_jump_effect_position)
 		wall_jump_effect.scale.x = wall_axis

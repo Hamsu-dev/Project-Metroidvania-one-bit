@@ -19,6 +19,7 @@ size = Vector2(16, 10)
 collision_layer = 8
 floor_snap_length = 2.0
 script = ExtResource("1_fxw5w")
+speed = 20.0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -9)

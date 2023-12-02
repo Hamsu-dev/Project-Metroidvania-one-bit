@@ -1,0 +1,89 @@
+[gd_scene load_steps=13 format=3 uid="uid://t6ffiulo2v1i"]
+
+[ext_resource type="Texture2D" uid="uid://i2m86spmjyhy" path="res://enemies/crawling_enemy.png" id="1_d847d"]
+[ext_resource type="Script" path="res://enemies/crawling_enemy.gd" id="1_y7nsg"]
+[ext_resource type="PackedScene" uid="uid://c2485mvh1adsb" path="res://Collisions/hurtbox.tscn" id="2_77uf6"]
+[ext_resource type="PackedScene" uid="uid://dqqxrsakj521w" path="res://Collisions/hitbox.tscn" id="3_emedp"]
+[ext_resource type="PackedScene" uid="uid://da4kflkjmnvb3" path="res://BaseScenesToInherit/stats.tscn" id="5_bxyd4"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4lue7"]
+atlas = ExtResource("1_d847d")
+region = Rect2(0, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xahwq"]
+atlas = ExtResource("1_d847d")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_647bc"]
+atlas = ExtResource("1_d847d")
+region = Rect2(32, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wantx"]
+atlas = ExtResource("1_d847d")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_q8xj8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4lue7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xahwq")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_647bc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wantx")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_351hg"]
+size = Vector2(16, 6)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5ghx7"]
+size = Vector2(14, 5.5)
+
+[node name="CrawlingEnemy" type="Node2D"]
+script = ExtResource("1_y7nsg")
+max_speed = 200
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -8)
+sprite_frames = SubResource("SpriteFrames_q8xj8")
+autoplay = "default"
+frame_progress = 0.428756
+
+[node name="Hurtbox" parent="." instance=ExtResource("2_77uf6")]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -3)
+shape = SubResource("RectangleShape2D_351hg")
+
+[node name="Hitbox" parent="." instance=ExtResource("3_emedp")]
+collision_mask = 16
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(0, -2.75)
+shape = SubResource("RectangleShape2D_5ghx7")
+
+[node name="FloorCast" type="RayCast2D" parent="."]
+position = Vector2(0, -3)
+target_position = Vector2(2.08165e-12, 8)
+collision_mask = 3
+
+[node name="WallCast" type="RayCast2D" parent="."]
+position = Vector2(0, -4)
+target_position = Vector2(4, 2.08165e-12)
+collision_mask = 3
+
+[node name="Stats" parent="." instance=ExtResource("5_bxyd4")]
+max_health = 2
+
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
