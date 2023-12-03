@@ -10,6 +10,7 @@ const EnemyDeathEffectScene = preload("res://effects/enemy_death_effect.tscn")
 @onready var bullet_spawn_point = $BulletSpawnPoint
 @onready var fire_direction = $FireDirection
 
+signal enemy_died
 
 func fire_bullet():
 	var bullet = Utils.instantiate_scene_on_world(EnemyBulletScene, bullet_spawn_point.global_position) as Projectile
@@ -24,5 +25,6 @@ func _on_hurtbox_hurt(hitbox, damage):
 
 
 func _on_stats_no_health():
+	enemy_died.emit(self)
 	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, bullet_spawn_point.global_position)
 	queue_free()

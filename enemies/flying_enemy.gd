@@ -9,6 +9,9 @@ const EnemyDeathEffectScene = preload("res://effects/enemy_death_effect.tscn")
 @onready var stats = $Stats
 @onready var way_point_path_finding = $WayPointPathFinding
 
+signal enemy_died
+
+
 func _ready():
 	set_physics_process(false)
 
@@ -28,6 +31,7 @@ func _on_hurtbox_hurt(hitbox, damage):
 
 
 func _on_stats_no_health():
+	enemy_died.emit(self)
 	queue_free()
 	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, global_position)
 

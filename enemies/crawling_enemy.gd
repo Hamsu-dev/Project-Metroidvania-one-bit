@@ -11,6 +11,9 @@ enum DIRECTION {LEFT = -1, RIGHT = 1}
 @onready var wall_cast = $WallCast
 @onready var stats = $Stats as Stats
 
+signal enemy_died
+
+
 func _ready():
 	wall_cast.target_position.x *= crawling_direction
 
@@ -35,5 +38,6 @@ func _on_hurtbox_hurt(hitbox, damage):
 
 
 func _on_stats_no_health():
+	enemy_died.emit(self)
 	queue_free()
 	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, global_position)

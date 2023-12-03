@@ -12,6 +12,7 @@ var time_since_last_spawn = 0.0
 @onready var death_effect_location = $DeathEffectLocation
 @onready var stats = $Stats
 
+
 func _ready():
 	set_process(false) # Disable processing until activated.
 
@@ -33,11 +34,13 @@ func _spawn_enemy():
 	if enemy_scene:
 		var enemy = Utils.instantiate_scene_on_world(enemy_scene, global_position + Vector2(0, -10))  # Adjust the position as needed
 		active_enemies.append(enemy)
+		enemy.enemy_died.connect(_on_enemy_died)
 		print("Spawned enemy, active count: ", active_enemies.size())
 
-func _on_enemy_no_health(_dead_enemy):
-	active_enemies.erase(_dead_enemy)
+func _on_enemy_died(dead_enemy):
+	active_enemies.erase(dead_enemy)
 	print("Enemy killed, active count: ", active_enemies.size())
+
 
 func _on_body_entered(body: Node):
 	start_spawning()

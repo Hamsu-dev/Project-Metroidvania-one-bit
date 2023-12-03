@@ -13,6 +13,10 @@ var direction = 1.0
 @onready var floor_cast = $FloorCast
 @onready var stats = $Stats
 
+
+signal enemy_died
+
+
 func _physics_process(delta):
 	if not is_on_floor():
 		velocity.y += gravity * delta
@@ -41,5 +45,6 @@ func _on_hurtbox_hurt(hitbox, damage):
 
 
 func _on_stats_no_health():
+	enemy_died.emit(self)
 	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, death_effect_location.global_position)
 	queue_free()
