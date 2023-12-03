@@ -1,0 +1,43 @@
+[gd_scene load_steps=8 format=3 uid="uid://c5apv5l3t76r7"]
+
+[ext_resource type="Texture2D" uid="uid://clafuj3obpon5" path="res://player/player_ship.png" id="1_lhhd1"]
+[ext_resource type="Script" path="res://enemies/enemy_spawner.gd" id="1_luqgn"]
+[ext_resource type="PackedScene" uid="uid://umwl8ods1pxf" path="res://enemies/walking_enemy.tscn" id="2_j1ant"]
+[ext_resource type="PackedScene" uid="uid://da4kflkjmnvb3" path="res://BaseScenesToInherit/stats.tscn" id="3_dyhvk"]
+[ext_resource type="PackedScene" uid="uid://c2485mvh1adsb" path="res://Collisions/hurtbox.tscn" id="5_i1etm"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xi6lv"]
+size = Vector2(112, 71)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_js8k6"]
+size = Vector2(28, 40)
+
+[node name="EnemySpawner" type="Area2D"]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("1_luqgn")
+enemy_scene = ExtResource("2_j1ant")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -35.5)
+shape = SubResource("RectangleShape2D_xi6lv")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -24)
+texture = ExtResource("1_lhhd1")
+
+[node name="Stats" parent="." instance=ExtResource("3_dyhvk")]
+
+[node name="Hurtbox" parent="." instance=ExtResource("5_i1etm")]
+collision_layer = 32
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
+position = Vector2(0, -24)
+shape = SubResource("RectangleShape2D_js8k6")
+
+[node name="DeathEffectLocation" type="Marker2D" parent="."]
+position = Vector2(0, -24)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
