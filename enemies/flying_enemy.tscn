@@ -1,10 +1,11 @@
-[gd_scene load_steps=16 format=3 uid="uid://bjy7jsrf67xy6"]
+[gd_scene load_steps=17 format=3 uid="uid://bjy7jsrf67xy6"]
 
 [ext_resource type="Texture2D" uid="uid://5cify65o2y6a" path="res://enemies/flying_enemy.png" id="1_ekdh3"]
 [ext_resource type="Script" path="res://enemies/flying_enemy.gd" id="1_ks88r"]
 [ext_resource type="PackedScene" uid="uid://da4kflkjmnvb3" path="res://BaseScenesToInherit/stats.tscn" id="3_mxng5"]
 [ext_resource type="PackedScene" uid="uid://dqqxrsakj521w" path="res://Collisions/hitbox.tscn" id="3_wr6hp"]
 [ext_resource type="PackedScene" uid="uid://c2485mvh1adsb" path="res://Collisions/hurtbox.tscn" id="4_yjtcl"]
+[ext_resource type="PackedScene" uid="uid://dq6q8o8r262w7" path="res://enemies/way_point_path_finding.tscn" id="6_708ao"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_yuq7o"]
 atlas = ExtResource("1_ekdh3")
@@ -66,7 +67,8 @@ radius = 6.0
 radius = 8.0
 
 [node name="FlyingEnemy" type="CharacterBody2D"]
-collision_layer = 0
+collision_layer = 8
+collision_mask = 9
 motion_mode = 1
 script = ExtResource("1_ks88r")
 
@@ -79,8 +81,6 @@ flip_h = true
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_8l1hg")
 
-[node name="Stats" parent="." instance=ExtResource("3_mxng5")]
-
 [node name="Hitbox" parent="." instance=ExtResource("3_wr6hp")]
 collision_mask = 16
 
@@ -91,8 +91,14 @@ shape = SubResource("CircleShape2D_4ms87")
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0, -2)
 shape = SubResource("CircleShape2D_mrw0w")
 
-[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[node name="Stats" parent="." instance=ExtResource("3_mxng5")]
+
+[node name="WayPointPathFinding" parent="." instance=ExtResource("6_708ao")]
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
+[connection signal="screen_entered" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_entered"]

@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dq6q8o8r262w7"]
+
+[ext_resource type="Script" path="res://enemies/way_point_path_finding.gd" id="1_i4148"]
+
+[node name="WayPointPathFinding" type="Node2D"]
+script = ExtResource("1_i4148")
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
