@@ -185,4 +185,5 @@ func _on_drop_timer_timeout():
 func _on_hurtbox_hurt(hitbox, damage):
 	Events.add_screenshake.emit(3, 0.2)
 	PlayerStats.health -= 1
+	DifficultyManager.register_damage()
 	blinking_animation_player.play("blink")

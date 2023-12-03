@@ -35,11 +35,9 @@ func _spawn_enemy():
 		var enemy = Utils.instantiate_scene_on_world(enemy_scene, global_position + Vector2(0, -10))  # Adjust the position as needed
 		active_enemies.append(enemy)
 		enemy.enemy_died.connect(_on_enemy_died)
-		print("Spawned enemy, active count: ", active_enemies.size())
 
 func _on_enemy_died(dead_enemy):
 	active_enemies.erase(dead_enemy)
-	print("Enemy killed, active count: ", active_enemies.size())
 
 
 func _on_body_entered(body: Node):
