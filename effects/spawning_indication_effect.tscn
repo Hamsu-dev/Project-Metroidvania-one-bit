@@ -1,0 +1,29 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7w8ofdwdnfvy"]
+
+[ext_resource type="Texture2D" uid="uid://c38a33isgmac2" path="res://enemies/Enemy_alert_effect1.png" id="1_nrq60"]
+[ext_resource type="Texture2D" uid="uid://cggkloslhopqg" path="res://enemies/Enemy_alert_effect2.png" id="2_myw2j"]
+[ext_resource type="Texture2D" uid="uid://g8c15yn2ariw" path="res://enemies/Enemy_alert_effect3.png" id="3_g4j6d"]
+[ext_resource type="Script" path="res://effects/effect.gd" id="4_gfx1o"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_bgk75"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_nrq60")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_myw2j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_g4j6d")
+}],
+"loop": false,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="SpawningIndicationEffect" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_bgk75")
+autoplay = "default"
+frame_progress = 1.0
+script = ExtResource("4_gfx1o")

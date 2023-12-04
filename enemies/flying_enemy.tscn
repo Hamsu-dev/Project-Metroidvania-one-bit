@@ -57,8 +57,8 @@ animations = [{
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8l1hg"]
-radius = 6.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_xg2ko"]
+radius = 1.41421
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_4ms87"]
 radius = 6.0
@@ -79,7 +79,7 @@ frame_progress = 0.567884
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_8l1hg")
+shape = SubResource("CircleShape2D_xg2ko")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_wr6hp")]
 collision_mask = 16
