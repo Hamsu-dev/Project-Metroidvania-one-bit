@@ -160,7 +160,7 @@ shape = SubResource("RectangleShape2D_qasy4")
 
 [node name="EnemySpawner5" parent="." instance=ExtResource("13_anumb")]
 position = Vector2(616, 160)
-enemy_scene = ExtResource("11_mjpj5")
+enemy_scene = ExtResource("8_fc4sv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemySpawner5"]
 position = Vector2(56, -56)
