@@ -13,10 +13,16 @@ enum DIRECTION {LEFT = -1, RIGHT = 1}
 
 signal enemy_died
 
-
 func _ready():
-	wall_cast.target_position.x *= crawling_direction
+	initialize_enemy()
 
+func initialize_enemy():
+	# Crawling enemy specific initialization
+	var player = MainInstances.player
+	if player:
+		# Set the crawling direction based on player position, if needed
+		crawling_direction = sign(global_position.direction_to(player.global_position).x)
+	wall_cast.target_position.x *= crawling_direction
 
 func _physics_process(delta):
 	if wall_cast.is_colliding():
@@ -32,10 +38,8 @@ func _physics_process(delta):
 		else:
 			rotation_degrees += crawling_direction
 
-
 func _on_hurtbox_hurt(hitbox, damage):
 	stats.health -= damage
-
 
 func _on_stats_no_health():
 	enemy_died.emit(self)

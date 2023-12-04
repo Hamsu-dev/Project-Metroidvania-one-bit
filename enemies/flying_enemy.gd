@@ -11,8 +11,10 @@ const EnemyDeathEffectScene = preload("res://effects/enemy_death_effect.tscn")
 
 signal enemy_died
 
-
 func _ready():
+	initialize_enemy()
+
+func initialize_enemy():
 	set_physics_process(false)
 
 func _physics_process(delta):
@@ -29,12 +31,10 @@ func move_toward_position(target_position, delta):
 func _on_hurtbox_hurt(hitbox, damage):
 	stats.health -= damage
 
-
 func _on_stats_no_health():
 	enemy_died.emit(self)
 	queue_free()
 	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, global_position)
-
 
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	set_physics_process(true)

@@ -1,0 +1,55 @@
+[gd_scene load_steps=12 format=3 uid="uid://cabsifwcgthwr"]
+
+[ext_resource type="Texture2D" uid="uid://d14xxvuion46b" path="res://effects/Explosions FX/bigshot fx01.png" id="1_abbgn"]
+[ext_resource type="Texture2D" uid="uid://drqruqw1r26kj" path="res://effects/Explosions FX/bigshot fx02.png" id="2_0peac"]
+[ext_resource type="Texture2D" uid="uid://bh1m8abua0gbe" path="res://effects/Explosions FX/bigshot fx03.png" id="3_muebp"]
+[ext_resource type="Texture2D" uid="uid://dgk58rywksckq" path="res://effects/Explosions FX/bigshot fx04.png" id="4_4l6lk"]
+[ext_resource type="Texture2D" uid="uid://gyrndkb84n8g" path="res://effects/Explosions FX/bigshot fx05.png" id="5_axlk0"]
+[ext_resource type="Texture2D" uid="uid://dcbxb5bxlgyto" path="res://effects/Explosions FX/bigshot fx06.png" id="6_d35v8"]
+[ext_resource type="Texture2D" uid="uid://ddslbwtsugpcs" path="res://effects/Explosions FX/bigshot fx07.png" id="7_clmx7"]
+[ext_resource type="Texture2D" uid="uid://co27cjqqnccnd" path="res://effects/Explosions FX/bigshot fx08.png" id="8_cs0np"]
+[ext_resource type="Texture2D" uid="uid://d3qdlrd5ekk6k" path="res://effects/Explosions FX/bigshot fx09.png" id="9_lbslr"]
+[ext_resource type="Script" path="res://effects/effect.gd" id="10_oegvv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tr0vl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_abbgn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_0peac")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_muebp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_4l6lk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_axlk0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_d35v8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_clmx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_cs0np")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_lbslr")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[node name="BigExplosionEffect" type="AnimatedSprite2D"]
+scale = Vector2(0.75, 0.75)
+sprite_frames = SubResource("SpriteFrames_tr0vl")
+autoplay = "default"
+frame = 8
+frame_progress = 1.0
+script = ExtResource("10_oegvv")

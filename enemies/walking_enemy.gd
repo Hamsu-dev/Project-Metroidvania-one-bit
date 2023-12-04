@@ -1,5 +1,6 @@
 extends CharacterBody2D
 
+
 const EnemyDeathEffectScene = preload("res://effects/enemy_death_effect.tscn")
 
 @export var speed = 30.0
@@ -13,9 +14,17 @@ var direction = 1.0
 @onready var floor_cast = $FloorCast
 @onready var stats = $Stats
 
-
 signal enemy_died
 
+func _ready():
+	initialize_enemy()
+
+func initialize_enemy():
+	var player = MainInstances.player
+	if player:
+		var player_position = player.global_position
+		direction = sign(global_position.direction_to(player_position).x)
+		sprite_2d.scale.x = direction
 
 func _physics_process(delta):
 	if not is_on_floor():
@@ -35,14 +44,11 @@ func _physics_process(delta):
 func is_at_ledge():
 	return is_on_floor() and not floor_cast.is_colliding()
 
-
 func turn_around():
 	direction *= -1.0
 
-
 func _on_hurtbox_hurt(hitbox, damage):
 	stats.health -= damage
-
 
 func _on_stats_no_health():
 	enemy_died.emit(self)

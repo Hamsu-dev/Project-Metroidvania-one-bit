@@ -2,6 +2,8 @@ extends Area2D
 
 const EnemyDeathEffectScene = preload("res://effects/enemy_death_effect.tscn")
 const EnemySpawnEffectScene = preload("res://effects/spawning_indication_effect.tscn")
+const BigExplosionEffectScene = preload("res://effects/big_explosion_effect.tscn")
+
 
 @export var enemy_scene: PackedScene
 @export var base_max_active_enemies = 3
@@ -18,6 +20,7 @@ var initial_spawn_done = false
 @onready var spawn_timer = Timer.new()
 @onready var cooldown_timer = Timer.new()
 @onready var spawing_alert = $SpawingAlert
+
 
 func _ready():
 	set_process(false)
@@ -44,7 +47,6 @@ func _on_body_entered(body: Node):
 func adjust_difficulty(difficulty_level):
 	spawner_difficulty_multiplier = max(difficulty_level, 1)  # Ensure it's at least 1
 	max_active_enemies = base_max_active_enemies * spawner_difficulty_multiplier
-	print("Spawner difficulty set. Spawning", max_active_enemies, "enemies!")
 
 func _on_spawn_timer_timeout():
 	if active_enemies.size() < max_active_enemies:
@@ -78,11 +80,10 @@ func play_spawn_effect():
 
 func _deferred_spawn_enemy():
 	if enemy_scene:
-		play_spawn_effect()
 		var enemy = Utils.instantiate_scene_on_world(enemy_scene, global_position)
+		enemy.initialize_enemy()
 		active_enemies.append(enemy)
 		enemy.enemy_died.connect(_on_enemy_died)
-		print("Enemy spawned. Total active enemies: ", active_enemies.size())
 
 
 func _on_enemy_died(dead_enemy):
@@ -96,7 +97,8 @@ func _on_hurtbox_hurt(hitbox, damage):
 	stats.health -= damage
 
 func _on_stats_no_health():
-	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, death_effect_location.global_position)
+	Events.add_screenshake.emit(5, 0.2)
+	Utils.instantiate_scene_on_world(BigExplosionEffectScene, global_position)
 	queue_free()
 
 
