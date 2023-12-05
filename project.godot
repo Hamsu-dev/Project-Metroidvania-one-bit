@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Project-Metroidvania-one-bit"
-run/main_scene="res://world/world.tscn"
+run/main_scene="res://Menu/start_menu.tscn"
 config/features=PackedStringArray("4.1", "GL Compatibility")
 config/icon="res://player/player_ship.png"
 
@@ -22,6 +22,7 @@ Events="*res://Singleton/events.gd"
 PlayerStats="*res://player/player_stats.tscn"
 MainInstances="*res://Singleton/MainInstances.gd"
 DifficultyManager="*res://Singleton/DifficultyManager.gd"
+GameStats="*res://Singleton/GameStats.gd"
 
 [debug]
 
@@ -34,10 +35,16 @@ window/size/viewport_height=180
 window/size/window_width_override=1280
 window/size/window_height_override=720
 window/stretch/mode="canvas_items"
+mouse_cursor/custom_image="res://ui/cursor-target-5.png"
 
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+
+[gui]
+
+theme/custom="res://ui/default_theme.tres"
+theme/custom_font="res://ui/pixel_font.ttf"
 
 [input]
 

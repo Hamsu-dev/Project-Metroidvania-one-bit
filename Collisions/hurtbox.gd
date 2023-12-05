@@ -12,8 +12,6 @@ signal hurt(hitbox, damage)
 func take_hit(hitbox, damage):
 	if is_invincible: return
 	hurt.emit(hitbox, damage)
-	print("Damage taken: ", damage)
-
 
 func disable(value):
 	for child in get_children():

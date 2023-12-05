@@ -42,6 +42,7 @@ func _on_hurtbox_hurt(hitbox, damage):
 	stats.health -= damage
 
 func _on_stats_no_health():
+	GameStats.increment_kill_count()
 	enemy_died.emit(self)
 	queue_free()
 	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, global_position)

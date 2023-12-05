@@ -32,13 +32,20 @@ func start_reloading() -> void:
 	current_ammo = ammo_capacity
 	is_reloading = false
 
-func fire_bullet() -> void:
+func fire_bullet():
 	if Time.get_ticks_msec() - last_shot_time > fire_rate * 1000 and current_ammo > 0 and not is_reloading:
 		var bullet: Node2D = Utils.instantiate_scene_on_world(BulletScene, muzzle.global_position)
 		bullet.rotation = blaster_sprite.rotation
+
+		# Find the Hitbox node in the instantiated bullet and set its damage
+		var hitbox = bullet.get_node("Hitbox")  # Replace "Hitbox" with the correct path if necessary
+		if hitbox:
+			hitbox.damage = GameStats.calculate_damage()
+
 		bullet.update_velocity() # Assuming this is a method in the Bullet script
 		current_ammo -= 1
 		
 		if current_ammo <= 0:
 			start_reloading()
 		last_shot_time = Time.get_ticks_msec()
+

@@ -15,7 +15,7 @@ size = Vector2(16, 15)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kb8t4"]
 size = Vector2(16, 10)
 
-[node name="WalkingEnemy" type="CharacterBody2D"]
+[node name="WalkingEnemy" type="CharacterBody2D" groups=["Enemy"]]
 collision_layer = 8
 floor_snap_length = 2.0
 script = ExtResource("1_fxw5w")
