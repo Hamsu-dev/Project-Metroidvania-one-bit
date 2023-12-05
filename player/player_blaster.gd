@@ -14,7 +14,6 @@ var last_shot_time: int = 0 # Keeps track of the last shot time
 var current_ammo: int = ammo_capacity
 var is_reloading: bool = false
 
-var upgrades = [] # List to store upgrades
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("reload") and not is_reloading and current_ammo < ammo_capacity:
@@ -40,15 +39,6 @@ func fire_bullet() -> void:
 		bullet.update_velocity() # Assuming this is a method in the Bullet script
 		current_ammo -= 1
 		
-		apply_upgrades_to_bullet(bullet) # Apply upgrades to the bullet
-			
 		if current_ammo <= 0:
 			start_reloading()
 		last_shot_time = Time.get_ticks_msec()
-
-func apply_upgrades_to_bullet(bullet: Node2D) -> void:
-	for upgrade in upgrades:
-		upgrade.apply_to_bullet(bullet)
-
-func add_upgrade(upgrade: BlasterUpgrade):
-	upgrades.append(upgrade)

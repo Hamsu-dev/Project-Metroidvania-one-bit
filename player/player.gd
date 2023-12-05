@@ -4,9 +4,6 @@ const DustEffectScene = preload("res://effects/dust_effect.tscn")
 const JumpEffectScene = preload("res://effects/jump_effect.tscn" )
 const WallJumpEffectScene = preload("res://effects/wall_jump_effect.tscn")
 
-#Upgrades
-const AttackUpgrade = preload("res://Upgrades/AttackUpgrade.gd")
-
 
 @export var acceleration = 512
 @export var max_velocity = 64
@@ -35,9 +32,6 @@ var state = move_state
  
 func _ready():
 	PlayerStats.no_health.connect(die)
-	var attack_upgrade_instance = AttackUpgrade.new()
-	player_blaster.add_upgrade(attack_upgrade_instance)
-	print("AttackUpgrade has been added to the player blaster.")
 	
 	
 func _enter_tree():
@@ -194,8 +188,3 @@ func _on_hurtbox_hurt(hitbox, damage):
 	PlayerStats.health -= 1
 	DifficultyManager.register_damage()
 	blinking_animation_player.play("blink")
-
-
-func _on_UpgradePickedUp():  # This would be triggered when the player interacts with the shop or picks up the item
-	var upgrade_instance = AttackUpgrade.new()
-	player_blaster.add_upgrade(upgrade_instance)

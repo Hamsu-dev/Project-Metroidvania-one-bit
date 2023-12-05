@@ -22,7 +22,6 @@ Events="*res://Singleton/events.gd"
 PlayerStats="*res://player/player_stats.tscn"
 MainInstances="*res://Singleton/MainInstances.gd"
 DifficultyManager="*res://Singleton/DifficultyManager.gd"
-DropManager="*res://Singleton/DropManager.gd"
 
 [debug]
 
