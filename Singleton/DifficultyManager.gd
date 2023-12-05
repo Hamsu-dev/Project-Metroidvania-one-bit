@@ -2,10 +2,10 @@
 extends Node
 
 var difficulty_level = 1
-var max_difficulty_level = 10
+var max_difficulty_level = 100
 var time_since_last_damage = 0.0
 var grace_period = 0.0  # Start with 0 grace period
-var increase_difficulty_interval = 30.0#120.0  # Seconds without damage to increase difficulty
+var increase_difficulty_interval = 0.01#30.0 # Seconds without damage to increase difficulty
 
 signal difficulty_changed(new_difficulty_level)
 

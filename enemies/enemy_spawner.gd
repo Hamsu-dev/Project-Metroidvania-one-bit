@@ -51,6 +51,7 @@ func adjust_difficulty(difficulty_level):
 func _on_spawn_timer_timeout():
 	if active_enemies.size() < max_active_enemies:
 		_spawn_enemy()
+		set_variable_spawn_rate()
 		spawn_timer.start()  # Schedule next spawn
 
 func start_spawning_sequence():
@@ -63,7 +64,8 @@ func start_spawning_sequence():
 
 
 func set_variable_spawn_rate():
-	var variance = randf_range(-0.2, 0.2)  # Adjust variance as needed
+	print("working")
+	var variance = randf_range(-0.5, 0.5)  # Adjust variance as needed
 	spawn_timer.wait_time = spawn_rate + variance
 
 

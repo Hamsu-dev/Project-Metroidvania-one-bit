@@ -18,7 +18,6 @@ signal enemy_died
 
 func _ready():
 	initialize_enemy()
-	adjust_health_based_on_difficulty(DifficultyManager.difficulty_level)  # Add this line to adjust health on spawn
 
 func initialize_enemy():
 	var player = MainInstances.player
@@ -51,13 +50,9 @@ func turn_around():
 func _on_hurtbox_hurt(hitbox, damage):
 	stats.health -= damage
 
+
 func _on_stats_no_health():
 	GameStats.increment_kill_count()
 	enemy_died.emit(self)
 	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, death_effect_location.global_position)
 	queue_free()
-
-
-func adjust_health_based_on_difficulty(difficulty_level):
-	var new_max_health = stats.base_max_health + difficulty_level 
-	stats.set_max_health(new_max_health)

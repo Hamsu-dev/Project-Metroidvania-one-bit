@@ -19,7 +19,7 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_38u00")
 
 [node name="Stats" parent="." instance=ExtResource("3_dyhvk")]
-max_health = 10
+max_health = 25
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_i1etm")]
 position = Vector2(0, -13)
