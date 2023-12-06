@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dly6nel285bou"]
+
+[ext_resource type="Script" path="res://ui/DamageIndicator.gd" id="1_nhusc"]
+
+[node name="DamageIndicatorInGame" type="Label"]
+offset_right = 40.0
+offset_bottom = 6.0
+script = ExtResource("1_nhusc")

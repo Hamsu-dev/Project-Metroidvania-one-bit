@@ -86,4 +86,5 @@ collision_mask = 3
 max_health = 4
 
 [connection signal="hurt" from="Hurtbox" to="." method="_on_hurtbox_hurt"]
+[connection signal="health_changed" from="Stats" to="." method="_on_stats_health_changed"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]

@@ -46,3 +46,10 @@ func _on_stats_no_health():
 	enemy_died.emit(self)
 	queue_free()
 	Utils.instantiate_scene_on_world(EnemyDeathEffectScene, global_position)
+
+func _on_stats_health_changed(amount_changed):
+	if amount_changed < 0:
+			var damage_number = preload("res://ui/DamageIndicator.tscn").instantiate()
+			damage_number.text = str(abs(amount_changed))
+			add_child(damage_number)
+			damage_number.global_position = global_position + Vector2(-2.5, -25)

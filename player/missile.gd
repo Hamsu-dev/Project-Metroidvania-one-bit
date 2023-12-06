@@ -27,16 +27,19 @@ func _process(delta):
 		position += velocity * delta
 
 func _on_timer_timeout():
+	Events.add_screenshake.emit(3, 0.2)
 	homing_active = false
 	emit_signal("missile_deactivated")
 	Utils.instantiate_scene_on_world(BigExplosionEffectScene, global_position)
 	queue_free()
 
 func _on_hitbox_body_entered(body):
+	Events.add_screenshake.emit(3, 0.2)
 	Utils.instantiate_scene_on_world(BigExplosionEffectScene, global_position)
 	queue_free()
 
 func _on_hitbox_area_entered(area):
+	Events.add_screenshake.emit(3, 0.2)
 	Utils.instantiate_scene_on_world(BigExplosionEffectScene, global_position)    
 	queue_free()
 

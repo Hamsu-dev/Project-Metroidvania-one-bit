@@ -23,6 +23,7 @@ PlayerStats="*res://player/player_stats.tscn"
 MainInstances="*res://Singleton/MainInstances.gd"
 DifficultyManager="*res://Singleton/DifficultyManager.gd"
 GameStats="*res://Singleton/GameStats.gd"
+DamageOutput="*res://Singleton/damage_output.gd"
 
 [debug]
 
