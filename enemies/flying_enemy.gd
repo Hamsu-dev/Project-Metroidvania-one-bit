@@ -40,9 +40,9 @@ func _on_stats_no_health():
 func _on_visible_on_screen_notifier_2d_screen_entered():
 	set_physics_process(true)
 
-func _on_stats_health_changed(amount_changed):
-	if amount_changed < 0:
-			var damage_number = preload("res://ui/DamageIndicator.tscn").instantiate()
-			damage_number.text = str(abs(amount_changed))
-			add_child(damage_number)
-			damage_number.global_position = global_position + Vector2(-2.5, -25)
+#func _on_stats_health_changed(amount_changed):
+#	if amount_changed < 0:
+#			var damage_number = preload("res://ui/DamageIndicator.tscn").instantiate()
+#			damage_number.text = str(abs(amount_changed))
+#			add_child(damage_number)
+#			damage_number.global_position = global_position + Vector2(-2.5, -25)
