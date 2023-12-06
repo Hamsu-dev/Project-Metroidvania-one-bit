@@ -94,6 +94,7 @@ collision_layer = 32
 shape = SubResource("CircleShape2D_mrw0w")
 
 [node name="Stats" parent="." instance=ExtResource("3_mxng5")]
+max_health = 6
 
 [node name="WayPointPathFinding" parent="." instance=ExtResource("6_708ao")]
 

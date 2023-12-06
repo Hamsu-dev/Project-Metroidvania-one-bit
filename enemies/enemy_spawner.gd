@@ -64,7 +64,6 @@ func start_spawning_sequence():
 
 
 func set_variable_spawn_rate():
-	print("working")
 	var variance = randf_range(-0.5, 0.5)  # Adjust variance as needed
 	spawn_timer.wait_time = spawn_rate + variance
 

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://wpe51k2r8h0n"]
+
+[ext_resource type="PackedScene" uid="uid://dbl3kn7i5rfs5" path="res://BaseScenesToInherit/projectile.tscn" id="1_asfs7"]
+[ext_resource type="Texture2D" uid="uid://d0nor8k5fqc3a" path="res://player/player_missile.png" id="2_ue7ho"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j6d07"]
+size = Vector2(13, 4)
+
+[node name="Missile" instance=ExtResource("1_asfs7")]
+speed = 50
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_ue7ho")
+
+[node name="VisibleOnScreenNotifier2D" parent="." index="1"]
+position = Vector2(-1, 5.96046e-08)
+scale = Vector2(0.7, 0.3)
+
+[node name="Hitbox" parent="." index="2"]
+collision_mask = 35
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
+position = Vector2(-0.5, 0)
+shape = SubResource("RectangleShape2D_j6d07")

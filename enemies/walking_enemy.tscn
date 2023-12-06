@@ -52,6 +52,7 @@ position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_kb8t4")
 
 [node name="Stats" parent="." instance=ExtResource("5_fw508")]
+max_health = 6
 
 [node name="DeathEffectLocation" type="Marker2D" parent="."]
 position = Vector2(0, -7)
