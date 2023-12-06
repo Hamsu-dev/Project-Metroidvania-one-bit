@@ -1,13 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://wpe51k2r8h0n"]
+[gd_scene load_steps=5 format=3 uid="uid://wpe51k2r8h0n"]
 
 [ext_resource type="PackedScene" uid="uid://dbl3kn7i5rfs5" path="res://BaseScenesToInherit/projectile.tscn" id="1_asfs7"]
 [ext_resource type="Texture2D" uid="uid://d0nor8k5fqc3a" path="res://player/player_missile.png" id="2_ue7ho"]
+[ext_resource type="Script" path="res://player/missile.gd" id="2_wqmds"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6d07"]
 size = Vector2(13, 4)
 
 [node name="Missile" instance=ExtResource("1_asfs7")]
-speed = 50
+script = ExtResource("2_wqmds")
+speed = 150
 
 [node name="Sprite2D" type="Sprite2D" parent="." index="0"]
 texture = ExtResource("2_ue7ho")

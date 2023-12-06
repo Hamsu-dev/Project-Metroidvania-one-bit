@@ -14,7 +14,7 @@ var ammo_capacity: int = 10
 var last_shot_time: int = 0 # Keeps track of the last shot time
 var current_ammo: int = ammo_capacity
 var is_reloading: bool = false
-
+var missile_active = false
 
 func _physics_process(delta: float) -> void:
 	if Input.is_action_just_pressed("reload") and not is_reloading and current_ammo < ammo_capacity:
@@ -54,7 +54,10 @@ func fire_bullet():
 		last_shot_time = Time.get_ticks_msec()
 
 func fire_missile():
+	if missile_active: return
+	missile_active = true
 	var missile = Utils.instantiate_scene_on_world(MissileScene, muzzle.global_position)
+	missile.missile_deactivated.connect(_on_missile_deactivated)
 	missile.rotation = blaster_sprite.rotation
 
 	# Set the base damage for the instantiated missile
@@ -64,3 +67,6 @@ func fire_missile():
 
 	missile.update_velocity()
 
+
+func _on_missile_deactivated():
+	missile_active = false
