@@ -23,3 +23,11 @@ offset_bottom = 12.0
 texture = ExtResource("2_lm80t")
 expand_mode = 1
 stretch_mode = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+layout_mode = 0
+offset_left = 10.0
+offset_top = 15.0
+offset_right = 14.0
+offset_bottom = 36.0
+scale = Vector2(0.5, 0.5)
