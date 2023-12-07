@@ -14,12 +14,16 @@ var active_enemies = []
 var spawner_difficulty_multiplier = 1
 var max_active_enemies
 var initial_spawn_done = false
+var is_dead = false 
 
 @onready var death_effect_location = $DeathEffectLocation
 @onready var stats = $Stats
 @onready var spawn_timer = Timer.new()
 @onready var cooldown_timer = Timer.new()
 @onready var spawing_alert = $SpawingAlert
+@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var collision_shape_2d = $Hurtbox/CollisionShape2D
+@onready var hurtbox = $Hurtbox
 
 
 func _ready():
@@ -39,9 +43,11 @@ func setup_timers():
 	cooldown_timer.timeout.connect(_on_cool_down_timer_timeout)
 
 func _on_body_entered(body: Node):
+	if is_dead: return
 	if !initial_spawn_done and body.is_in_group("Player"):
 		initial_spawn_done = true
 		adjust_difficulty(DifficultyManager.difficulty_level)
+		animated_sprite_2d.play("Spawn")
 		start_spawning_sequence()
 
 func adjust_difficulty(difficulty_level):
@@ -49,12 +55,14 @@ func adjust_difficulty(difficulty_level):
 	max_active_enemies = base_max_active_enemies * spawner_difficulty_multiplier
 
 func _on_spawn_timer_timeout():
+	if is_dead: return
 	if active_enemies.size() < max_active_enemies:
 		_spawn_enemy()
 		set_variable_spawn_rate()
 		spawn_timer.start()  # Schedule next spawn
 
 func start_spawning_sequence():
+	if is_dead: return
 	if active_enemies.size() < max_active_enemies:
 		_spawn_enemy()  # Spawn first enemy immediately
 		set_variable_spawn_rate()  # Set a variable spawn rate
@@ -71,6 +79,7 @@ func set_variable_spawn_rate():
 func _spawn_enemy():
 	play_spawn_effect() 
 	call_deferred("_deferred_spawn_enemy")
+	animated_sprite_2d.play("Spawn")
 
 func play_spawn_effect():
 	var effect = Utils.instantiate_scene_on_world(EnemySpawnEffectScene, spawing_alert.global_position)
@@ -98,9 +107,19 @@ func _on_hurtbox_hurt(hitbox, damage):
 	stats.health -= damage
 
 func _on_stats_no_health():
+	if is_dead: return
+	is_dead = true
 	Events.add_screenshake.emit(5, 0.2)
-	Utils.instantiate_scene_on_world(BigExplosionEffectScene, global_position)
-	queue_free()
+	animated_sprite_2d.play("Dead")
+	call_deferred("_finalize_death")
+#	Utils.instantiate_scene_on_world(BigExplosionEffectScene, global_position)
+#	queue_free()
+
+func _finalize_death():
+	collision_shape_2d.disabled = true
+	hurtbox.monitoring = false
+	spawn_timer.stop()
+	cooldown_timer.stop()
 
 
 func _on_cool_down_timer_timeout():

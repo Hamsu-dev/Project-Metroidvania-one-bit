@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://10cptk50dyjd"
+path="res://.godot/imported/Spawner01.aseprite-e86c2c8952a97a1289cf7d68e4963611.res"
+
+[deps]
+
+source_file="res://enemies/Spawner01.aseprite"
+dest_files=["res://.godot/imported/Spawner01.aseprite-e86c2c8952a97a1289cf7d68e4963611.res"]
+
+[params]
+

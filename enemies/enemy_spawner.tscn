@@ -1,9 +1,81 @@
-[gd_scene load_steps=6 format=3 uid="uid://c5apv5l3t76r7"]
+[gd_scene load_steps=21 format=3 uid="uid://c5apv5l3t76r7"]
 
 [ext_resource type="Script" path="res://enemies/enemy_spawner.gd" id="1_luqgn"]
-[ext_resource type="Texture2D" uid="uid://86c0ognycq4l" path="res://enemies/EnemySpawner.png" id="2_38u00"]
+[ext_resource type="Texture2D" uid="uid://b3ovvcii5t2bj" path="res://enemies/Spawner11.png" id="2_ssjbi"]
 [ext_resource type="PackedScene" uid="uid://da4kflkjmnvb3" path="res://BaseScenesToInherit/stats.tscn" id="3_dyhvk"]
+[ext_resource type="Texture2D" uid="uid://dcusm8idnurc3" path="res://enemies/Spawner12.png" id="3_vo48t"]
+[ext_resource type="Texture2D" uid="uid://blx2th4rbeybu" path="res://enemies/Spawner13.png" id="4_1f23s"]
+[ext_resource type="Texture2D" uid="uid://d7bc0le4hjwx" path="res://enemies/Spawner14.png" id="5_1megt"]
 [ext_resource type="PackedScene" uid="uid://c2485mvh1adsb" path="res://Collisions/hurtbox.tscn" id="5_i1etm"]
+[ext_resource type="Texture2D" uid="uid://07yruidbu76q" path="res://enemies/Spawner15.png" id="6_xdhgr"]
+[ext_resource type="Texture2D" uid="uid://dbrvbugjav13m" path="res://enemies/Spawner01.png" id="7_hrh1n"]
+[ext_resource type="Texture2D" uid="uid://d0a7ktj3g3n35" path="res://enemies/Spawner02.png" id="8_v6xil"]
+[ext_resource type="Texture2D" uid="uid://8v71qhk2vthi" path="res://enemies/Spawner03.png" id="9_7duqp"]
+[ext_resource type="Texture2D" uid="uid://csamentxoubdp" path="res://enemies/Spawner04.png" id="10_rpmka"]
+[ext_resource type="Texture2D" uid="uid://rifedylmdq2p" path="res://enemies/Spawner05.png" id="11_tnb3t"]
+[ext_resource type="Texture2D" uid="uid://bl7f3wqi4dbxh" path="res://enemies/Spawner06.png" id="12_q7oyp"]
+[ext_resource type="Texture2D" uid="uid://cghliino7kms2" path="res://enemies/Spawner07.png" id="13_n5mf5"]
+[ext_resource type="Texture2D" uid="uid://csmnvqxl03c0x" path="res://enemies/Spawner08.png" id="14_p8m48"]
+[ext_resource type="Texture2D" uid="uid://umtwkhwkua8y" path="res://enemies/Spawner09.png" id="15_y3n7d"]
+[ext_resource type="Texture2D" uid="uid://vjii655fat1p" path="res://enemies/Spawner10.png" id="16_enuep"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mj8j1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ssjbi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_vo48t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_1f23s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_1megt")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_xdhgr")
+}],
+"loop": false,
+"name": &"Dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_hrh1n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_v6xil")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_7duqp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rpmka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_tnb3t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_q7oyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_n5mf5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_p8m48")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_y3n7d")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_enuep")
+}],
+"loop": false,
+"name": &"Spawn",
+"speed": 10.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js8k6"]
 size = Vector2(29, 32)
@@ -13,10 +85,13 @@ collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_luqgn")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -16)
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_38u00")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -19)
+scale = Vector2(2, 2)
+sprite_frames = SubResource("SpriteFrames_mj8j1")
+animation = &"Dead"
+frame = 4
+frame_progress = 1.0
 
 [node name="Stats" parent="." instance=ExtResource("3_dyhvk")]
 max_health = 25
@@ -30,14 +105,11 @@ position = Vector2(0.5, -3)
 shape = SubResource("RectangleShape2D_js8k6")
 
 [node name="DeathEffectLocation" type="Marker2D" parent="."]
-position = Vector2(0, -24)
+position = Vector2(0, -6)
 
 [node name="SpawnTimer" type="Timer" parent="."]
 
 [node name="CoolDownTimer" type="Timer" parent="."]
-
-[node name="SpawingAlert" type="Marker2D" parent="."]
-position = Vector2(0, -48)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="no_health" from="Stats" to="." method="_on_stats_no_health"]
