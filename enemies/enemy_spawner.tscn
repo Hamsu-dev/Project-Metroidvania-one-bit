@@ -74,24 +74,24 @@ animations = [{
 }],
 "loop": false,
 "name": &"Spawn",
-"speed": 10.0
+"speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_js8k6"]
-size = Vector2(29, 32)
+size = Vector2(10, 24)
 
 [node name="EnemySpawner" type="Area2D"]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("1_luqgn")
+spawn_cooldown = 3.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0, -19)
 scale = Vector2(2, 2)
 sprite_frames = SubResource("SpriteFrames_mj8j1")
-animation = &"Dead"
-frame = 4
-frame_progress = 1.0
+animation = &"Spawn"
+autoplay = "Spawn"
 
 [node name="Stats" parent="." instance=ExtResource("3_dyhvk")]
 max_health = 25
@@ -101,7 +101,7 @@ position = Vector2(0, -13)
 collision_layer = 32
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hurtbox"]
-position = Vector2(0.5, -3)
+position = Vector2(-1, 1)
 shape = SubResource("RectangleShape2D_js8k6")
 
 [node name="DeathEffectLocation" type="Marker2D" parent="."]

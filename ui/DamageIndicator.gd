@@ -1,22 +1,27 @@
-# DamageLabel.gd
 extends Label
 
-# Declare member variables to store the damage amount and position
 var damage_amount: float
 var initial_position: Vector2
+var offset: Vector2  # Additional parameter for offset
 
-# This initialization method sets up the damage label
-func initialize_damage_label(damage_amount: float, position: Vector2):
-	self.damage_amount = damage_amount  # Store these for later use in start_display
+func initialize_damage_label(damage_amount: float, position: Vector2, offset: Vector2):
+	self.damage_amount = damage_amount
 	self.initial_position = position
+	self.offset = offset  # Store the offset
 	text = str(damage_amount)
-	global_position = initial_position + Vector2(0, -20)  # Adjusted offset from passed position
+	# Apply the offset to the initial position
+	var random_offset = Vector2(randf_range(-10, 10), randf_range(-30, -20))
+	global_position = initial_position + offset + random_offset  # Adjusted offset from passed position
 
-# Call this method when the label is ready to be shown
 func start_display():
 	show()
-	# Now we use the stored damage amount and position to animate
+	# Now we use the stored damage amount, position, and offset to animate
 	var tween = create_tween()
-	tween.tween_property(self, "modulate:a", 0, 1.0)  # Fade out over 1 second
-	tween.tween_property(self, "position", initial_position + Vector2(0, -50), 1)  # Move up
+	var fade_out_duration = randf_range(0.8, 1.2)  # Randomized fade out duration
+	tween.tween_property(self, "modulate:a", 0, fade_out_duration)  # Fade out
+
+	# Adjust end position with the offset
+	var random_x_movement = randf_range(-15, 15)
+	var end_position = initial_position + offset + Vector2(random_x_movement, -50)  # Randomized movement
+	tween.tween_property(self, "position", end_position, fade_out_duration)  # Move up
 	tween.finished.connect(queue_free)

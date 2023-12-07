@@ -1,7 +1,6 @@
 extends Area2D
 
 const EnemyDeathEffectScene = preload("res://effects/enemy_death_effect.tscn")
-const EnemySpawnEffectScene = preload("res://effects/spawning_indication_effect.tscn")
 const BigExplosionEffectScene = preload("res://effects/big_explosion_effect.tscn")
 
 
@@ -20,7 +19,6 @@ var is_dead = false
 @onready var stats = $Stats
 @onready var spawn_timer = Timer.new()
 @onready var cooldown_timer = Timer.new()
-@onready var spawing_alert = $SpawingAlert
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $Hurtbox/CollisionShape2D
 @onready var hurtbox = $Hurtbox
@@ -47,7 +45,6 @@ func _on_body_entered(body: Node):
 	if !initial_spawn_done and body.is_in_group("Player"):
 		initial_spawn_done = true
 		adjust_difficulty(DifficultyManager.difficulty_level)
-		animated_sprite_2d.play("Spawn")
 		start_spawning_sequence()
 
 func adjust_difficulty(difficulty_level):
@@ -72,21 +69,18 @@ func start_spawning_sequence():
 
 
 func set_variable_spawn_rate():
-	var variance = randf_range(-0.5, 0.5)  # Adjust variance as needed
+	var variance = randf_range(-0.2, 0.2)  # Adjust variance as needed
 	spawn_timer.wait_time = spawn_rate + variance
 
 
 func _spawn_enemy():
 	play_spawn_effect() 
 	call_deferred("_deferred_spawn_enemy")
-	animated_sprite_2d.play("Spawn")
+
 
 func play_spawn_effect():
-	var effect = Utils.instantiate_scene_on_world(EnemySpawnEffectScene, spawing_alert.global_position)
-	effect.global_position = spawing_alert.global_position   # Set the effect's position
-	if effect.get_parent() == null:
-		get_tree().get_root().add_child(effect)
-
+	animated_sprite_2d.play("Spawn")
+	
 
 func _deferred_spawn_enemy():
 	if enemy_scene:
@@ -112,8 +106,7 @@ func _on_stats_no_health():
 	Events.add_screenshake.emit(5, 0.2)
 	animated_sprite_2d.play("Dead")
 	call_deferred("_finalize_death")
-#	Utils.instantiate_scene_on_world(BigExplosionEffectScene, global_position)
-#	queue_free()
+
 
 func _finalize_death():
 	collision_shape_2d.disabled = true
@@ -124,3 +117,7 @@ func _finalize_death():
 
 func _on_cool_down_timer_timeout():
 	start_spawning_sequence()
+
+
+func get_damage_label_offset() -> Vector2:
+	return Vector2(0 , -5)

@@ -15,9 +15,13 @@ func take_hit(hitbox, damage):
 		return
 	emit_signal("hurt", hitbox, damage)
 
-	# Create and show damage label right when hurt
+	var offset = Vector2.ZERO
+	if get_parent() and get_parent().has_method("get_damage_label_offset"):
+		offset = get_parent().get_damage_label_offset()
+
+	# Create and show damage label
 	var damage_label = DamageIndicator.new()
-	damage_label.initialize_damage_label(damage, global_position) 
+	damage_label.initialize_damage_label(damage, global_position + offset, offset) 
 	get_tree().current_scene.add_child(damage_label)
 	damage_label.start_display()
 
