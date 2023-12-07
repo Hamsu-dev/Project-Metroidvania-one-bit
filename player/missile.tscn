@@ -1,14 +1,19 @@
-[gd_scene load_steps=6 format=3 uid="uid://wpe51k2r8h0n"]
+[gd_scene load_steps=8 format=3 uid="uid://wpe51k2r8h0n"]
 
 [ext_resource type="PackedScene" uid="uid://dbl3kn7i5rfs5" path="res://BaseScenesToInherit/projectile.tscn" id="1_asfs7"]
 [ext_resource type="Texture2D" uid="uid://d0nor8k5fqc3a" path="res://player/player_missile.png" id="2_ue7ho"]
 [ext_resource type="Script" path="res://player/missile.gd" id="2_wqmds"]
+[ext_resource type="Texture2D" uid="uid://chupr4c6ihexh" path="res://effects/particle_effect.png" id="4_j1xda"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j6d07"]
 size = Vector2(13, 4)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gbvew"]
 radius = 28.0713
+
+[sub_resource type="Curve" id="Curve_a23le"]
+_data = [Vector2(0.00257383, 0.972566), 0.0, 0.0, 0, 0, Vector2(1, 0.335398), 0.0, 0.0, 0, 0]
+point_count = 2
 
 [node name="Missile" instance=ExtResource("1_asfs7")]
 script = ExtResource("2_wqmds")
@@ -35,3 +40,20 @@ collision_mask = 35
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Missile_AOE" index="0"]
 shape = SubResource("CircleShape2D_gbvew")
+
+[node name="Flames" type="CPUParticles2D" parent="." index="4"]
+position = Vector2(-7, 0)
+amount = 6
+lifetime = 0.2
+preprocess = 0.2
+texture = ExtResource("4_j1xda")
+emission_shape = 1
+emission_sphere_radius = 2.0
+direction = Vector2(-1, 2.08165e-12)
+spread = 10.0
+gravity = Vector2(2.08165e-12, 10)
+initial_velocity_min = 5.0
+initial_velocity_max = 5.0
+angular_velocity_min = 500.0
+angular_velocity_max = 1000.0
+scale_amount_curve = SubResource("Curve_a23le")
