@@ -1,11 +1,13 @@
-[gd_scene load_steps=2 format=3 uid="uid://daudbtsnwa0lc"]
+[gd_scene load_steps=3 format=3 uid="uid://daudbtsnwa0lc"]
 
 [ext_resource type="Texture2D" uid="uid://b45nvbgsu1f18" path="res://ui/player_missile_icon.png" id="1_0nbkg"]
+[ext_resource type="Script" path="res://ui/missile_ui.gd" id="1_sh6e4"]
 
 [node name="MissileUI" type="HBoxContainer"]
-offset_right = 88.0
-offset_bottom = 40.0
+offset_right = 14.0
+offset_bottom = 10.0
 theme_override_constants/separation = 0
+script = ExtResource("1_sh6e4")
 
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 2
