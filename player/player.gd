@@ -17,6 +17,7 @@ const WallJumpEffectScene = preload("res://effects/wall_jump_effect.tscn")
 
 var air_jump = false
 var state = move_state
+var player_knockback_force = 0.0
 
 @onready var animation_player = $AnimationPlayer
 @onready var sprite_2d = $Sprite2D
@@ -189,8 +190,13 @@ func _on_drop_timer_timeout():
 	set_collision_mask_value(2, true)
 
 
-func _on_hurtbox_hurt(hitbox, damage):
+func _on_hurtbox_hurt(hitbox, damage, direction):
 	Events.add_screenshake.emit(3, 0.2)
 	PlayerStats.health -= 1
 	DifficultyManager.register_damage()
 	blinking_animation_player.play("blink")
+	if player_knockback_force > 0:
+		apply_knockback(direction)
+
+func apply_knockback(direction):
+	pass
