@@ -14,3 +14,7 @@ Button/styles/hover = ExtResource("1_7f5c7")
 Button/styles/normal = ExtResource("1_igh47")
 Button/styles/pressed = ExtResource("1_igh47")
 Label/font_sizes/font_size = 6
+ProgressBar/colors/font_color = Color(1, 1, 1, 1)
+ProgressBar/colors/font_outline_color = Color(0, 0, 0, 1)
+ProgressBar/constants/outline_size = 10
+ProgressBar/font_sizes/font_size = 16
