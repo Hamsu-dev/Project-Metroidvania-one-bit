@@ -27,9 +27,8 @@ stretch_mode = 1
 
 [node name="ProgressBar" type="ProgressBar" parent="."]
 layout_mode = 2
-offset_left = 23.0
-offset_top = 1.0
-offset_right = 42.0
-offset_bottom = 11.0
+offset_left = 25.0
+offset_right = 46.0
+offset_bottom = 12.0
 theme = ExtResource("4_biiyb")
-fill_mode = 3
+exp_edit = true
