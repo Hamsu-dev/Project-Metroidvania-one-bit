@@ -10,6 +10,9 @@ const EnemyDeathEffectScene = preload("res://effects/enemy_death_effect.tscn")
 @onready var bullet_spawn_point = $BulletSpawnPoint
 @onready var fire_direction = $FireDirection
 
+var is_knockback_active = false
+var knockback_velocity = Vector2()
+
 signal enemy_died
 
 func fire_bullet():
@@ -20,8 +23,14 @@ func fire_bullet():
 	bullet.velocity = velocity
 
 
-func _on_hurtbox_hurt(hitbox, damage):
+func _on_hurtbox_hurt(hitbox, damage, direction):
 	stats.health -= damage
+	apply_knockback(direction)
+
+
+func apply_knockback(direction):
+	is_knockback_active = true
+	knockback_velocity = direction * stats.knockback_force
 
 
 func _on_stats_no_health():

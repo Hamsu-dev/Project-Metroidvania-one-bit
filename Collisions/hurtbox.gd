@@ -7,13 +7,13 @@ var is_invincible = false :
 		is_invincible = value
 		disable.call_deferred(value)
 
-signal hurt(hitbox, damage)
+signal hurt(hitbox, damage, direction)
 
 
-func take_hit(hitbox, damage):
+func take_hit(hitbox, damage, direction):
 	if is_invincible:
 		return
-	emit_signal("hurt", hitbox, damage)
+	hurt.emit(hitbox, damage, direction)
 
 	var offset = Vector2.ZERO
 	if get_parent() and get_parent().has_method("get_damage_label_offset"):
@@ -29,5 +29,3 @@ func disable(value):
 	for child in get_children():
 		if child is CollisionShape2D or child is CollisionPolygon2D:
 			child.disabled = value
-
-

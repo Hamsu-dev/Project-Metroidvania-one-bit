@@ -7,7 +7,9 @@ func _on_area_entered(hurtbox):
 	if not hurtbox is Hurtbox: return
 
 	var damage = GameStats.calculate_damage(base_damage)  # Calculate damage using base_damage
-	hurtbox.take_hit(self, damage)
+	
+	var direction = (hurtbox.global_position - global_position).normalized()
+	hurtbox.take_hit(self, damage, direction)
 
 	if "Player" in hurtbox.get_groups():
 		GameStats.reset_multiplier()
