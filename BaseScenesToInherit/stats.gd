@@ -1,7 +1,7 @@
 class_name Stats
 extends Node
 
-@export var max_health = 3 : set = set_max_health
+@export var max_health = 0 : set = set_max_health
 @export var knockback_force = 100.0 
 
 @onready var health = max_health : set = set_health

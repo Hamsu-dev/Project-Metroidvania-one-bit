@@ -140,6 +140,7 @@ shape = SubResource("RectangleShape2D_hdbwj")
 
 [node name="Hitbox" parent="." instance=ExtResource("3_lamt3")]
 collision_mask = 16
+base_damage = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(0, 1)
