@@ -14,7 +14,10 @@ func take_hit(hitbox, damage, direction):
 	if is_invincible:
 		return
 	hurt.emit(hitbox, damage, direction)
-
+	
+	if get_parent() and get_parent().is_in_group("Player"):
+		return
+		
 	var offset = Vector2.ZERO
 	if get_parent() and get_parent().has_method("get_damage_label_offset"):
 		offset = get_parent().get_damage_label_offset()

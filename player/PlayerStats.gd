@@ -26,11 +26,11 @@ func set_missiles(value):
 
 func change_ammo(value: int):
 	current_ammo = value
-	emit_signal("bullets_changed", current_ammo)
+	bullets_changed.emit(current_ammo)
 
 func set_reloading_status(status: bool):
 	is_reloading = status
-	emit_signal("reloading_status_changed", is_reloading)
+	reloading_status_changed.emit(is_reloading)
 
 func refill_ammo():
 	change_ammo(ammo_capacity)  # Resets current ammo to max capacity
