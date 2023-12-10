@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://cju7gfrbs7dmi"]
+
+[ext_resource type="PackedScene" uid="uid://daudbtsnwa0lc" path="res://ui/missile_ui.tscn" id="1_3nfgn"]
+[ext_resource type="Texture2D" uid="uid://b8v44ptt5b0ix" path="res://player/Defualt_bullet.png" id="2_6h54y"]
+[ext_resource type="Script" path="res://ui/bullet_ui.gd" id="2_tpdu5"]
+
+[node name="BulletUI" instance=ExtResource("1_3nfgn")]
+offset_right = 16.0
+script = ExtResource("2_tpdu5")
+
+[node name="Icon" parent="." index="0"]
+texture = ExtResource("2_6h54y")
+
+[node name="Label" parent="." index="1"]
+text = "10
+"

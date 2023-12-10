@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bnjy5oleo8qv7"]
+[gd_scene load_steps=22 format=3 uid="uid://bnjy5oleo8qv7"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_2woc3"]
 [ext_resource type="PackedScene" uid="uid://d2eqgiarngc4l" path="res://player/player.tscn" id="1_ac7h7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dw25pef8c5hno" path="res://Menu/pause_menu.tscn" id="3_8brjp"]
 [ext_resource type="PackedScene" uid="uid://c8pd1kbta8klt" path="res://world/moving_platform.tscn" id="3_dpqbs"]
 [ext_resource type="PackedScene" uid="uid://daudbtsnwa0lc" path="res://ui/missile_ui.tscn" id="4_37vjd"]
+[ext_resource type="PackedScene" uid="uid://cju7gfrbs7dmi" path="res://ui/bullet_ui.tscn" id="5_4iukn"]
 [ext_resource type="Curve2D" uid="uid://bn3wpvax5xsu" path="res://world/Platform_Path/up_down_path.tres" id="5_j8dgb"]
 [ext_resource type="Curve2D" uid="uid://dukv7uj84ata3" path="res://world/Platform_Path/left_right_path.tres" id="6_00i64"]
 [ext_resource type="Curve2D" uid="uid://cw5lq0em3a8ux" path="res://world/Platform_Path/hex_path.tres" id="7_xqnl7"]
@@ -42,10 +43,16 @@ offset_bottom = 7.0
 visible = false
 
 [node name="MissileUI" parent="UI" instance=ExtResource("4_37vjd")]
+offset_left = 59.0
+offset_top = 8.0
+offset_right = 73.0
+offset_bottom = 18.0
+
+[node name="BulletUI" parent="UI" instance=ExtResource("5_4iukn")]
 offset_left = 8.0
-offset_top = 22.0
-offset_right = 22.0
-offset_bottom = 32.0
+offset_top = 20.0
+offset_right = 24.0
+offset_bottom = 30.0
 
 [node name="Player" parent="." instance=ExtResource("1_ac7h7")]
 position = Vector2(-212, 136)

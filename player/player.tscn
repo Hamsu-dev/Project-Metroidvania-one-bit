@@ -133,7 +133,7 @@ floor_snap_length = 2.0
 safe_margin = 0.1
 script = ExtResource("1_lcs33")
 
-[node name="PlayerBlaster" parent="." instance=ExtResource("3_6tqhu")]
+[node name="PlayerBlaster" parent="." groups=["PlayerBlaster"] instance=ExtResource("3_6tqhu")]
 show_behind_parent = true
 position = Vector2(1.33333, -8)
 scale = Vector2(0.75, 0.75)

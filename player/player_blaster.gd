@@ -3,6 +3,9 @@ extends Node2D
 const BulletScene: PackedScene = preload("res://player/bullet.tscn")
 const MissileScene: PackedScene = preload("res://player/missile.tscn")
 
+signal bullets_changed(current_ammo)
+signal reloading_status_changed(is_reloading)
+
 # Blaster stats
 var fire_rate: float = 0.1 # Time between shots
 var reload_speed: float = 2.0 # Time to reload
@@ -26,11 +29,13 @@ func _physics_process(delta: float) -> void:
 func start_reloading() -> void:
 	print("reloading...")
 	is_reloading = true
+	reloading_status_changed.emit(is_reloading)
 	current_ammo = 0
 	await get_tree().create_timer(reload_speed).timeout
 	current_ammo = ammo_capacity
 	is_reloading = false
-
+	reloading_status_changed.emit(is_reloading)
+	bullets_changed.emit(current_ammo)
 
 func _process(delta: float) -> void:
 	blaster_sprite.rotation = get_local_mouse_position().angle()
@@ -48,7 +53,8 @@ func fire_bullet():
 
 		bullet.update_velocity()  # Assuming this is a method in the Bullet script
 		current_ammo -= 1
-		
+		bullets_changed.emit(current_ammo)
+	
 		if current_ammo <= 0:
 			start_reloading()
 		last_shot_time = Time.get_ticks_msec()
@@ -70,3 +76,11 @@ func fire_missile():
 
 func _on_missile_deactivated():
 	missile_active = false
+
+
+func _on_bullets_changed(current_ammo):
+	pass # Replace with function body.
+
+
+func _on_reloading_status_changed(is_reloading):
+	pass # Replace with function body.
