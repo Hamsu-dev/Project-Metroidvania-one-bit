@@ -95,6 +95,7 @@ autoplay = "Spawn"
 
 [node name="Stats" parent="." instance=ExtResource("3_dyhvk")]
 max_health = 25
+knockback_force = 2.08165e-12
 
 [node name="Hurtbox" parent="." instance=ExtResource("5_i1etm")]
 position = Vector2(0, -13)

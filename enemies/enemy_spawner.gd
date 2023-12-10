@@ -14,6 +14,9 @@ var spawner_difficulty_multiplier = 1
 var max_active_enemies
 var initial_spawn_done = false
 var is_dead = false 
+var is_knockback_active = false
+var knockback_velocity = Vector2()
+var knockback_timer = Timer.new()
 
 @onready var death_effect_location = $DeathEffectLocation
 @onready var stats = $Stats
@@ -29,7 +32,6 @@ func _ready():
 	setup_timers()
 	add_child(spawn_timer)
 	add_child(cooldown_timer)
-
 
 func setup_timers():
 	spawn_timer.wait_time = spawn_rate
@@ -97,8 +99,12 @@ func _on_enemy_died(dead_enemy):
 	elif active_enemies.size() == 0:
 		cooldown_timer.start()  # Start cooldown if all enemies are cleared
 
-func _on_hurtbox_hurt(hitbox, damage):
+func _on_hurtbox_hurt(hitbox, damage, direction):
 	stats.health -= damage
+	apply_knockback(direction)
+
+func apply_knockback(direction):
+	pass
 
 func _on_stats_no_health():
 	if is_dead: return
