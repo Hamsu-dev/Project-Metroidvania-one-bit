@@ -20,7 +20,6 @@ func set_health(value):
 	var old_health = health
 	health = clamp(value, 0, max_health)
 	var change = health - old_health
-	print(health)	
 	health_changed.emit()
 	if health <= 0:
 		no_health.emit()

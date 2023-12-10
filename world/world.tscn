@@ -40,8 +40,11 @@ offset_top = 7.0
 offset_right = 8.0
 offset_bottom = 7.0
 
-[node name="PauseMenu" parent="UI" instance=ExtResource("3_8brjp")]
-visible = false
+[node name="BulletUI" parent="UI" instance=ExtResource("5_4iukn")]
+offset_left = 8.0
+offset_top = 20.0
+offset_right = 24.0
+offset_bottom = 30.0
 
 [node name="MissileUI" parent="UI" instance=ExtResource("4_37vjd")]
 offset_left = 59.0
@@ -49,11 +52,8 @@ offset_top = 8.0
 offset_right = 73.0
 offset_bottom = 18.0
 
-[node name="BulletUI" parent="UI" instance=ExtResource("5_4iukn")]
-offset_left = 8.0
-offset_top = 20.0
-offset_right = 24.0
-offset_bottom = 30.0
+[node name="PauseMenu" parent="UI" instance=ExtResource("3_8brjp")]
+visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_ac7h7")]
 position = Vector2(762, 36)
