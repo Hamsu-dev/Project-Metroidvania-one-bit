@@ -1,0 +1,16 @@
+[gd_scene load_steps=5 format=3 uid="uid://ccstna8vpsri4"]
+
+[ext_resource type="PackedScene" uid="uid://db7nnao038irj" path="res://player/powerup.tscn" id="1_7mt3r"]
+[ext_resource type="Script" path="res://player/ammo_refresh.gd" id="2_akpbk"]
+[ext_resource type="Texture2D" uid="uid://yw0dmbpn3qy2" path="res://player/AmmoPowerUp1.png" id="2_fe5hk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2vr3e"]
+
+[node name="AmmoRefresh" instance=ExtResource("1_7mt3r")]
+script = ExtResource("2_akpbk")
+
+[node name="Sprite2D" parent="." index="0"]
+texture = ExtResource("2_fe5hk")
+
+[node name="CollisionShape2D" parent="." index="1"]
+shape = SubResource("CircleShape2D_2vr3e")

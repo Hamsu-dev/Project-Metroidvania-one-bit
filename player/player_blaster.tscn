@@ -13,6 +13,3 @@ offset = Vector2(4, 2.08165e-12)
 
 [node name="Muzzle" type="Marker2D" parent="BlasterSprite"]
 position = Vector2(11, -2.08165e-12)
-
-[connection signal="bullets_changed" from="." to="." method="_on_bullets_changed"]
-[connection signal="reloading_status_changed" from="." to="." method="_on_reloading_status_changed"]
