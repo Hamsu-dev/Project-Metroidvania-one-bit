@@ -35,6 +35,6 @@ offset_bottom = 18.0
 visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_ac7h7")]
-position = Vector2(487, 466)
+position = Vector2(-150, 154)
 
 [node name="Level1" parent="." instance=ExtResource("7_8braa")]

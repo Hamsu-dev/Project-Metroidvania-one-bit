@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://b0dy52plkyrx6"]
+[gd_scene load_steps=5 format=3 uid="uid://b0dy52plkyrx6"]
 
 [ext_resource type="PackedScene" uid="uid://c0fqmqsgrd7go" path="res://world/world_tile_map.tscn" id="1_np3mv"]
 [ext_resource type="PackedScene" uid="uid://bqiq2souwjeed" path="res://world/door.tscn" id="2_kv23d"]
 [ext_resource type="Resource" uid="uid://dj2medv8sjn58" path="res://world/Doors/two_to_three.tres" id="3_clx4h"]
+[ext_resource type="PackedScene" uid="uid://df2nu58blpvx7" path="res://camera_limits.tscn" id="4_41084"]
 
 [node name="Level3" type="Node2D"]
 
@@ -13,3 +14,9 @@ layer_0/tile_data = PackedInt32Array(1114156, 131072, 2, 1048620, 131072, 1, 983
 position = Vector2(24, 175)
 new_level_path = "res://world/level_2.tscn"
 connection = ExtResource("3_clx4h")
+
+[node name="CameraLimits" parent="." instance=ExtResource("4_41084")]
+offset_left = 34.0
+offset_top = -3.0
+offset_right = 354.0
+offset_bottom = 177.0
