@@ -1,6 +1,6 @@
-Project Metroidvania One Bit
+#Project Metroidvania One Bit
 Welcome to "Project Metroidvania One Bit", a thrilling game that combines exploration, action, and adventure in a unique one-bit art style. This project is built using Godot Engine, showcasing the power of open-source game development.
-
+<br>
 Features
 Engaging Gameplay: Dive into a world of intricate level design, challenging enemies, and hidden secrets.
 Unique Art Style: Experience the charm of one-bit graphics, bringing a classic feel to modern gameplay.
