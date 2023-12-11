@@ -13,6 +13,7 @@ script = ExtResource("1_qowod")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -16)
 shape = SubResource("RectangleShape2D_60crd")
+debug_color = Color(0.937255, 0, 0.631373, 0.419608)
 
 [node name="RightCast" type="RayCast2D" parent="."]
 position = Vector2(0, -16)

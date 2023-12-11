@@ -1,6 +1,7 @@
 class_name Door
 extends Area2D
 
+
 var active = false
 
 @export_file("*.tscn") var new_level_path
@@ -29,4 +30,3 @@ func _physics_process(delta):
 
 func _on_timer_timeout():
 	active = true
-	
