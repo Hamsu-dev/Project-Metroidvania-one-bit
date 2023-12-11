@@ -335,8 +335,20 @@ position = Vector2(611, 71)
 [node name="Brick7" parent="." instance=ExtResource("16_dphfr")]
 position = Vector2(626, 71)
 
+[node name="Brick10" parent="." instance=ExtResource("16_dphfr")]
+position = Vector2(595, 71)
+
+[node name="Brick11" parent="." instance=ExtResource("16_dphfr")]
+position = Vector2(658, 71)
+
 [node name="MissilePowerup2" parent="." instance=ExtResource("17_iom7t")]
 position = Vector2(553, -26)
+
+[node name="MissilePowerup3" parent="." instance=ExtResource("17_iom7t")]
+position = Vector2(623, -25)
+
+[node name="MissilePowerup4" parent="." instance=ExtResource("17_iom7t")]
+position = Vector2(671, -23)
 
 [node name="CrawlingEnemy13" parent="." instance=ExtResource("11_mjpj5")]
 position = Vector2(619, 70)
@@ -346,6 +358,24 @@ position = Vector2(647, 70)
 
 [node name="CrawlingEnemy15" parent="." instance=ExtResource("11_mjpj5")]
 position = Vector2(636, 70)
+
+[node name="CrawlingEnemy16" parent="." instance=ExtResource("11_mjpj5")]
+position = Vector2(602, 71)
+
+[node name="CrawlingEnemy17" parent="." instance=ExtResource("11_mjpj5")]
+position = Vector2(630, 71)
+
+[node name="CrawlingEnemy18" parent="." instance=ExtResource("11_mjpj5")]
+position = Vector2(619, 71)
+
+[node name="CrawlingEnemy19" parent="." instance=ExtResource("11_mjpj5")]
+position = Vector2(638, 70)
+
+[node name="CrawlingEnemy20" parent="." instance=ExtResource("11_mjpj5")]
+position = Vector2(666, 70)
+
+[node name="CrawlingEnemy21" parent="." instance=ExtResource("11_mjpj5")]
+position = Vector2(655, 70)
 
 [editable path="MovingPlatform"]
 [editable path="MovingPlatform2"]

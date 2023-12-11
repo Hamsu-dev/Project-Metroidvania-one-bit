@@ -64,6 +64,7 @@ func falling_state(delta):
 	animated_sprite_2d.play("fall")
 	rotation_degrees += crawling_direction * spin_speed * delta
 	position.y += gravity * delta
+
 	if floor_cast.is_colliding() or wall_cast.is_colliding():
 		state = crawling_state
 
