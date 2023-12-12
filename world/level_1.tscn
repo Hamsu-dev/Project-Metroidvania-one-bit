@@ -15,7 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://ccstna8vpsri4" path="res://player/ammo_refresh.tscn" id="13_gjdy0"]
 [ext_resource type="PackedScene" uid="uid://bqiq2souwjeed" path="res://world/door.tscn" id="14_8kjn0"]
 [ext_resource type="Resource" uid="uid://xdi1q1j53an5" path="res://world/Doors/one_to_two.tres" id="15_ghwi7"]
-[ext_resource type="PackedScene" uid="uid://df2nu58blpvx7" path="res://camera_limits.tscn" id="16_0yjvc"]
+[ext_resource type="PackedScene" uid="uid://df2nu58blpvx7" path="res://world/camera_limits.tscn" id="16_0yjvc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qasy4"]
 size = Vector2(447, 176)

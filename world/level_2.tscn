@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://bqiq2souwjeed" path="res://world/door.tscn" id="3_3o5d8"]
 [ext_resource type="Resource" uid="uid://xdi1q1j53an5" path="res://world/Doors/one_to_two.tres" id="4_4qfw4"]
 [ext_resource type="Resource" uid="uid://dj2medv8sjn58" path="res://world/Doors/two_to_three.tres" id="5_sv8u3"]
-[ext_resource type="PackedScene" uid="uid://df2nu58blpvx7" path="res://camera_limits.tscn" id="6_c8yrn"]
+[ext_resource type="PackedScene" uid="uid://df2nu58blpvx7" path="res://world/camera_limits.tscn" id="6_c8yrn"]
 
 [node name="Level2" type="Node2D"]
 

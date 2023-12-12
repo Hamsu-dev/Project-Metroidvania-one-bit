@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://c0fqmqsgrd7go" path="res://world/world_tile_map.tscn" id="1_np3mv"]
 [ext_resource type="PackedScene" uid="uid://bqiq2souwjeed" path="res://world/door.tscn" id="2_kv23d"]
 [ext_resource type="Resource" uid="uid://dj2medv8sjn58" path="res://world/Doors/two_to_three.tres" id="3_clx4h"]
-[ext_resource type="PackedScene" uid="uid://df2nu58blpvx7" path="res://camera_limits.tscn" id="4_41084"]
+[ext_resource type="PackedScene" uid="uid://df2nu58blpvx7" path="res://world/camera_limits.tscn" id="4_41084"]
 
 [node name="Level3" type="Node2D"]
 

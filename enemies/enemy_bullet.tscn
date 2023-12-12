@@ -28,7 +28,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="EnemyBullet" instance=ExtResource("1_1e31l")]
+[node name="EnemyBullet" groups=["EnemyBullets"] instance=ExtResource("1_1e31l")]
 
 [node name="VisibleOnScreenNotifier2D" parent="." index="0"]
 position = Vector2(-2.38419e-07, 0)

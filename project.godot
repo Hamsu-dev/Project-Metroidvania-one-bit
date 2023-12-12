@@ -28,6 +28,7 @@ MainInstances="*res://Singleton/MainInstances.gd"
 DifficultyManager="*res://Singleton/DifficultyManager.gd"
 GameStats="*res://Singleton/GameStats.gd"
 DamageOutput="*res://Singleton/damage_output.gd"
+WorldStash="*res://Singleton/WorldStash.gd"
 
 [debug]
 

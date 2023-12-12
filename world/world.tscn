@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bnjy5oleo8qv7"]
+[gd_scene load_steps=9 format=3 uid="uid://bnjy5oleo8qv7"]
 
 [ext_resource type="Script" path="res://world/world.gd" id="1_2woc3"]
 [ext_resource type="PackedScene" uid="uid://d2eqgiarngc4l" path="res://player/player.tscn" id="1_ac7h7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://daudbtsnwa0lc" path="res://ui/missile_ui.tscn" id="4_37vjd"]
 [ext_resource type="PackedScene" uid="uid://cju7gfrbs7dmi" path="res://ui/bullet_ui.tscn" id="5_4iukn"]
 [ext_resource type="PackedScene" uid="uid://1b6dxesrrpc4" path="res://world/level_1.tscn" id="7_8braa"]
+[ext_resource type="PackedScene" uid="uid://b875ph40kfrj0" path="res://player/missile_powerup.tscn" id="8_8x4q3"]
 [ext_resource type="PackedScene" uid="uid://8looqvxl171n" path="res://ui/health_meter.tscn" id="9_aotli"]
 
 [node name="World" type="Node2D"]
@@ -35,6 +36,9 @@ offset_bottom = 18.0
 visible = false
 
 [node name="Player" parent="." instance=ExtResource("1_ac7h7")]
-position = Vector2(-150, 154)
+position = Vector2(751, 466)
 
 [node name="Level1" parent="." instance=ExtResource("7_8braa")]
+
+[node name="MissilePowerup" parent="." instance=ExtResource("8_8x4q3")]
+position = Vector2(715, 467)
